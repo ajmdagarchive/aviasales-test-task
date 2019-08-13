@@ -6,7 +6,7 @@ import css from './Logo.module.styl'
 export const Logo = () => {
     return (
         <div className={css.Logo}>
-            <img src={imageSrc} alt="Aviasales Logo" />
+            <img src={imageSrc} alt="Логотип Aviasales" />
         </div>
     )
 }

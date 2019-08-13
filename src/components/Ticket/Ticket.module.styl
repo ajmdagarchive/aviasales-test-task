@@ -1,0 +1,49 @@
+.Ticket
+    background-color var(--white-color)
+    padding 20px
+    width 100%
+    margin-bottom 20px
+    border-radius 5px
+    box-shadow 0px 2px 8px rgba(0, 0, 0, .1)
+    &:last-child
+        margin-bottom 0
+
+    &_Header
+        display flex
+        justify-content space-between
+        align-items center
+        margin-bottom 20px
+
+    &_Info
+        display flex
+        justify-content space-between
+        margin-bottom 10px
+        &:last-child
+            margin-bottom 0
+
+    &_InfoTitle
+        color #a0b0b9
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+
+    &_InfoValue
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--general-text-color);
+
+    &_Price
+        color var(--ticket-price-color)
+        font-weight 600
+        font-size 24px
+        line-height 1
+        margin 0
+
+    &_Carrier
+        display block
+
+    &_ToInfo
+        display flex
