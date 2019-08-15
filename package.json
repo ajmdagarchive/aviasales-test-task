@@ -21,6 +21,8 @@
     "devDependencies": {
         "@types/react": "^16.9.1",
         "@types/react-dom": "^16.8.5",
+        "@types/react-redux": "^7.1.1",
+        "@types/webpack-env": "^1.14.0",
         "css-loader": "^3.2.0",
         "file-loader": "^4.2.0",
         "html-webpack-plugin": "^3.2.0",
@@ -40,6 +42,11 @@
     },
     "dependencies": {
         "react": "^16.9.0",
-        "react-dom": "^16.9.0"
+        "react-dom": "^16.9.0",
+        "react-redux": "^7.1.0",
+        "redux-devtools-extension": "^2.13.8",
+        "redux-saga": "^1.0.5",
+        "typescript-fsa": "^3.0.0-beta-2",
+        "typescript-fsa-reducers": "^1.2.1"
     }
 }

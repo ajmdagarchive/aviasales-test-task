@@ -1,58 +1,90 @@
-import React, { useState } from 'react'
-import { Filter } from '../Filter/Filter'
+import React, { useState, useEffect } from 'react'
+import { Filter, StopFiltersKeys } from '../Filter/Filter'
+import { updateFilters } from '../../redux/store/filters/stops/actions/updateFilters'
 
 import css from './StopsFilters.module.styl'
 
 export interface StopFiltersState {
     allStops: boolean
-    noStops: boolean
-    oneStop: boolean
-    twoStops: boolean
-    threeStops: boolean
+    stops_0: boolean
+    stops_1: boolean
+    stops_2: boolean
+    stops_3: boolean
 }
 
-export const StopsFilters = () => {
+export interface StopFiltersDispatchProps {
+    updateFilters: typeof updateFilters
+}
+
+export const StopsFilters = (props: StopFiltersDispatchProps) => {
     const initialState = {
         allStops: true,
-        noStops: true,
-        oneStop: true,
-        twoStops: true,
-        threeStops: true,
+        stops_0: true,
+        stops_1: true,
+        stops_2: true,
+        stops_3: true,
     }
 
     const [filtersManager, setFiltersState] = useState(initialState)
+
+    useEffect(() => {
+        const updateFiltersPayload = { ...filtersManager }
+
+        delete updateFiltersPayload.allStops
+
+        const updateFiltersPayloadKeys = Object.keys(
+            updateFiltersPayload,
+        ) as StopFiltersKeys
+
+        updateFiltersPayloadKeys.forEach((key) => {
+            if (updateFiltersPayload[key] === true) {
+                delete updateFiltersPayload[key]
+            }
+
+            if (updateFiltersPayload[key] === false) {
+                updateFiltersPayload[key] = true
+
+                const keyId = key.slice(-1)
+                delete Object.assign(updateFiltersPayload, {
+                    [keyId]: updateFiltersPayload[key],
+                })[key]
+            }
+        })
+
+        props.updateFilters(updateFiltersPayload)
+    }, [filtersManager])
 
     return (
         <>
             <p className={css.StopsFilters_Title}>Количество пересадок</p>
             <Filter
-                text='Все'
-                checkboxId='allStops'
+                text="Все"
+                checkboxId="allStops"
                 checked={filtersManager.allStops}
                 setFiltersState={setFiltersState}
             />
             <Filter
-                text='Без пересадок'
-                checkboxId='noStops'
-                checked={filtersManager.noStops}
+                text="Без пересадок"
+                checkboxId="stops_0"
+                checked={filtersManager.stops_0}
                 setFiltersState={setFiltersState}
             />
             <Filter
-                text='1 пересадка'
-                checkboxId='oneStop'
-                checked={filtersManager.oneStop}
+                text="1 пересадка"
+                checkboxId="stops_1"
+                checked={filtersManager.stops_1}
                 setFiltersState={setFiltersState}
             />
             <Filter
-                text='2 пересадки'
-                checkboxId='twoStops'
-                checked={filtersManager.twoStops}
+                text="2 пересадки"
+                checkboxId="stops_2"
+                checked={filtersManager.stops_2}
                 setFiltersState={setFiltersState}
             />
             <Filter
-                text='3 пересадки'
-                checkboxId='threeStops'
-                checked={filtersManager.threeStops}
+                text="3 пересадки"
+                checkboxId="stops_3"
+                checked={filtersManager.stops_3}
                 setFiltersState={setFiltersState}
             />
         </>

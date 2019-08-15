@@ -5,18 +5,18 @@ import css from './Filter.module.styl'
 
 interface FilterProps {
     text: string
-    checkboxId: string
+    checkboxId: StopFiltersIds
     checked: boolean
     setFiltersState: React.Dispatch<React.SetStateAction<StopFiltersState>>
 }
 
-type stopFiltersIds = [
-    'allStops',
-    'noStops',
-    'oneStop',
-    'twoStops',
-    'threeStops',
-]
+export type StopFiltersIds =
+    | 'allStops'
+    | 'stops_0'
+    | 'stops_1'
+    | 'stops_2'
+    | 'stops_3'
+export type StopFiltersKeys = StopFiltersIds[]
 
 export const Filter = (props: FilterProps) => {
     const { checked, text, checkboxId } = props
@@ -29,7 +29,7 @@ export const Filter = (props: FilterProps) => {
                 const result = {} as StopFiltersState
                 const stopFilterStateKeys = Object.keys(
                     prevState,
-                ) as stopFiltersIds
+                ) as StopFiltersKeys
 
                 stopFilterStateKeys.forEach((key: keyof StopFiltersState) => {
                     result[key] = event.target.checked
@@ -82,7 +82,7 @@ export const Filter = (props: FilterProps) => {
                     <input
                         checked={checked}
                         className={css.Filter_Input}
-                        type='checkbox'
+                        type="checkbox"
                         id={checkboxId}
                         onChange={handleChange}
                     />
