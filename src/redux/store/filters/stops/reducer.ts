@@ -1,10 +1,14 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
-import { updateFilters } from '../actions/updateFilters'
+import { updateFiltersAction } from './actions'
 
-const initialState = {}
+const initialState: StopsFilterStore = {}
+
+export interface StopsFilterStore {
+    [key: number]: true
+}
 
 export const stops = reducerWithInitialState(initialState).case(
-    updateFilters,
+    updateFiltersAction,
     (state, data) => {
         return data
     },

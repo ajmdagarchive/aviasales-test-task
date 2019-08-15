@@ -3,13 +3,13 @@ import {
     createStore,
     DeepPartial,
     Middleware,
-    Store as ReduxStore,
+    Store,
 } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import createSagaMiddleware from 'redux-saga'
 import { rootReducer } from './store/reducers'
-import { rootSaga } from './sagas'
-
+import { runSagas } from './sagas'
+import { loadTicketsAction } from './store/tickets/actions'
 import { RootStore } from './types'
 
 export const configureStore = (initialData?: DeepPartial<RootStore>) => {
@@ -20,7 +20,11 @@ export const configureStore = (initialData?: DeepPartial<RootStore>) => {
         applyMiddleware(...middlewares),
     )
 
-    const store = createStore(rootReducer, initialData, composeEnhancers)
+    const store: Store<RootStore> = createStore(
+        rootReducer,
+        initialData,
+        composeEnhancers,
+    )
 
     if (process.env.NODE_ENV !== 'production' && module.hot) {
         module.hot.accept('./store/reducers', () => {
@@ -28,7 +32,9 @@ export const configureStore = (initialData?: DeepPartial<RootStore>) => {
         })
     }
 
-    sagaMiddleware.run(rootSaga)
+    runSagas(sagaMiddleware)
+
+    store.dispatch(loadTicketsAction())
 
     return store
 }

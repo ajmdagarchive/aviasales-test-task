@@ -4,7 +4,7 @@ import { Logo } from './components/Logo/Logo'
 import { FiltersContainer } from './components/layout/FiltersContainer/FiltersContainer'
 import { Content } from './components/layout/Content/Content'
 import { Page } from './components/layout/Page/Page'
-import { Sorting } from './components/Sorting/Sorting'
+import { SortingContainer } from './containers/SortingContainer/SortingContainer'
 import { TicketsContainer } from './components/TicketsContainer/TicketsContainer'
 import { MainContent } from './components/layout/MainContent/MainContent'
 import { StopsFiltersContainer } from './containers/StopsFiltersContainer/StopsFiltersContainer'
@@ -24,7 +24,7 @@ const App = () => (
                     <StopsFiltersContainer />
                 </FiltersContainer>
                 <Content>
-                    <Sorting />
+                    <SortingContainer />
                     <TicketsContainer />
                 </Content>
             </MainContent>
