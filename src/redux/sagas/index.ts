@@ -1,5 +1,6 @@
-import { all } from 'redux-saga/effects'
+import { SagaMiddleware } from 'redux-saga'
+import { watchLoadTickets } from './loadTickets'
 
-export function* rootSaga() {
-    yield all([])
+export const runSagas = (middleWare: SagaMiddleware<{}>) => {
+    middleWare.run(watchLoadTickets)
 }

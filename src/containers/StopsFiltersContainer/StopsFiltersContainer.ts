@@ -1,12 +1,15 @@
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import { StopsFilters } from '../../components/StopsFilters/StopsFilters'
-import { updateFilters } from '../../redux/store/filters/stops/actions/updateFilters'
+import {
+    StopsFilters,
+    StopFiltersDispatchProps,
+} from '../../components/StopsFilters/StopsFilters'
+import { updateFiltersAction } from '../../redux/store/filters/stops/actions'
 
-const mapDispatchToProps = (dispatch: Dispatch) =>
+const mapDispatchToProps = (dispatch: Dispatch): StopFiltersDispatchProps =>
     bindActionCreators(
         {
-            updateFilters,
+            updateFilters: updateFiltersAction,
         },
         dispatch,
     )
