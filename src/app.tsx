@@ -32,4 +32,6 @@ const App = () => (
     </Provider>
 )
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const rootEl = document.getElementById('root')
+
+ReactDOM.render(<App />, rootEl)

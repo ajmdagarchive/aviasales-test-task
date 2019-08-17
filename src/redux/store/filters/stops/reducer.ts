@@ -7,9 +7,7 @@ export interface StopsFilterStore {
     [key: number]: true
 }
 
-export const stops = reducerWithInitialState(initialState).case(
-    updateFiltersAction,
-    (_state, data) => {
+export const stops = reducerWithInitialState(initialState)
+    .case(updateFiltersAction, (_state, data) => {
         return data
-    },
-)
+    })

@@ -6,6 +6,4 @@ export interface UpdateFiltersActionPayload {
     [key: number]: true
 }
 
-export const updateFiltersAction = ACF<UpdateFiltersActionPayload>(
-    'UPDATE_FILTERS',
-)
+export const updateFiltersAction = ACF<UpdateFiltersActionPayload>('UPDATE_FILTERS')

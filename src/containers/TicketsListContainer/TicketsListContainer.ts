@@ -65,21 +65,3 @@ const mapStateToProps = (state: RootStore): TicketsListMapProps => {
 export const TicketsListContainer = connect(
     mapStateToProps,
 )(TicketsList)
-
-                        // //
-                        // // if (isLastFilter && isLastSegment && Number(stopFilter) !== stopsQuantity) return true
-                        // if (Number(stopFilter) !== stopsQuantity) continue
-
-                        // // если совпало на последнем фильтре - не показываем, т.к. предыдущие фильтры уже прошли ифом выше
-                        // if (Number(stopFilter) === stopsQuantity && isLastFilter) return false
-
-                        // // не совпало с фильтром на последней итерации по фильтрам
-                        // if (isLastFilter && Number(stopFilter) !== stopsQuantity) return true
-
-                        // //
-
-                        // // совпало хоть с одним фильтром, переходим в следующий сегмент (если сегмент не последний)
-                        // if (Number(stopFilter) === stopsQuantity && !isLastSegment) break
-
-                        // // совпало хоть с одним фильтром в последнем сегменте - не показываем билет
-                        // if (Number(stopFilter) === stopsQuantity && isLastSegment) return false

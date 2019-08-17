@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Filter, StopFiltersKeys } from '../Filter/Filter'
-import { updateFiltersAction } from '../../redux/store/filters/stops/actions'
+import { updateFiltersAction, UpdateFiltersActionPayload } from '../../redux/store/filters/stops/actions'
 
 import css from './StopsFilters.module.styl'
 
@@ -28,26 +28,16 @@ export const stopsFilters = (props: StopFiltersDispatchProps) => {
     const [filtersManager, setFiltersState] = React.useState(initialState)
 
     React.useEffect(() => {
-        const updateFiltersPayload = { ...filtersManager }
+        const filters = { ...filtersManager }
+        const updateFiltersPayload: UpdateFiltersActionPayload = {}
 
-        delete updateFiltersPayload.allStops
-
-        const updateFiltersPayloadKeys = Object.keys(
-            updateFiltersPayload,
+        const filtersKeys = Object.keys(
+            filters,
         ) as StopFiltersKeys
 
-        updateFiltersPayloadKeys.forEach((key) => {
-            if (updateFiltersPayload[key] === true) {
-                delete updateFiltersPayload[key]
-            }
-
-            if (updateFiltersPayload[key] === false) {
-                updateFiltersPayload[key] = true
-
-                const keyId = key.slice(-1)
-                delete Object.assign(updateFiltersPayload, {
-                    [keyId]: updateFiltersPayload[key],
-                })[key]
+        filtersKeys.forEach((key) => {
+            if (filters[key] === false && key !== 'allStops') {
+                updateFiltersPayload[Number(key.slice(-1))] = true
             }
         })
 

@@ -16,6 +16,7 @@ export type StopFiltersIds =
     | 'stops_1'
     | 'stops_2'
     | 'stops_3'
+
 export type StopFiltersKeys = StopFiltersIds[]
 
 export const Filter = (props: FilterProps) => {
@@ -47,7 +48,7 @@ export const Filter = (props: FilterProps) => {
             }
 
             if (event.target.checked === true) {
-                const prevCheckboxValues = Object.values(prevState).splice(1)
+                const prevCheckboxValues = Object.values(prevState).slice(1)
                 let unCheckedCounters = 0
 
                 for (let i = 0; i < prevCheckboxValues.length; i++) {

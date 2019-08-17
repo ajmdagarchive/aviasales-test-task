@@ -4,6 +4,4 @@ export type UpdateSortingActionPayload = 'price' | 'duration'
 
 const ACF = actionCreatorFactory('sort')
 
-export const updateSortingAction = ACF<UpdateSortingActionPayload>(
-    'UPDATE_SORTING',
-)
+export const updateSortingAction = ACF<UpdateSortingActionPayload>('UPDATE_SORTING')

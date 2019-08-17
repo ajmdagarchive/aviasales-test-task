@@ -5,9 +5,7 @@ const initialState = 'price'
 
 export type SortingStore = 'price' | 'duration'
 
-export const sort = reducerWithInitialState<SortingStore>(initialState).case(
-    updateSortingAction,
-    (_state, data) => {
+export const sort = reducerWithInitialState<SortingStore>(initialState)
+    .case(updateSortingAction, (_state, data) => {
         return data
-    },
-)
+    })

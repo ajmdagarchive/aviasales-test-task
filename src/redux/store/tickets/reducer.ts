@@ -24,9 +24,7 @@ export interface Ticket {
     ]
 }
 
-export const tickets = reducerWithInitialState(initialState).case(
-    loadTicketsAsync.done,
-    (state, data) => {
+export const tickets = reducerWithInitialState(initialState)
+    .case(loadTicketsAsync.done, (state, data) => {
         return [...state, ...data.result]
-    },
-)
+    })
