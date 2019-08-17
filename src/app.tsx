@@ -5,7 +5,7 @@ import { FiltersContainer } from './components/layout/FiltersContainer/FiltersCo
 import { Content } from './components/layout/Content/Content'
 import { Page } from './components/layout/Page/Page'
 import { SortingContainer } from './containers/SortingContainer/SortingContainer'
-import { TicketsContainer } from './components/TicketsContainer/TicketsContainer'
+import { TicketsListContainer } from './containers/TicketsListContainer/TicketsListContainer'
 import { MainContent } from './components/layout/MainContent/MainContent'
 import { StopsFiltersContainer } from './containers/StopsFiltersContainer/StopsFiltersContainer'
 import { configureStore } from './redux/configureStore'
@@ -25,7 +25,7 @@ const App = () => (
                 </FiltersContainer>
                 <Content>
                     <SortingContainer />
-                    <TicketsContainer />
+                    <TicketsListContainer />
                 </Content>
             </MainContent>
         </Page>

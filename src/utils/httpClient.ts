@@ -7,7 +7,7 @@ class HttpClient {
     fetch = async (url: string, options = {}) =>
         await fetchRetry(`${this.apiRoot}${url}`, options, {
             retryCount: 3,
-            delayMs: 500,
+            delayMs: 0,
         })
 
     fetchJSON = async (url: string, options = {}) => {
