@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 const imageSrc = require('./assets/Logo.svg')
 import css from './Logo.module.styl'

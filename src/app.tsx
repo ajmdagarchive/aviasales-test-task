@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import { Logo } from './components/Logo/Logo'
 import { FiltersContainer } from './components/layout/FiltersContainer/FiltersContainer'
 import { Content } from './components/layout/Content/Content'

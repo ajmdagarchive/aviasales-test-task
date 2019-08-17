@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import * as React from 'react'
 import { Filter, StopFiltersKeys } from '../Filter/Filter'
 import { updateFiltersAction } from '../../redux/store/filters/stops/actions'
 
@@ -16,7 +16,7 @@ export interface StopFiltersDispatchProps {
     updateFilters: typeof updateFiltersAction
 }
 
-export const StopsFilters = (props: StopFiltersDispatchProps) => {
+export const stopsFilters = (props: StopFiltersDispatchProps) => {
     const initialState = {
         allStops: true,
         stops_0: true,
@@ -25,9 +25,9 @@ export const StopsFilters = (props: StopFiltersDispatchProps) => {
         stops_3: true,
     }
 
-    const [filtersManager, setFiltersState] = useState(initialState)
+    const [filtersManager, setFiltersState] = React.useState(initialState)
 
-    useEffect(() => {
+    React.useEffect(() => {
         const updateFiltersPayload = { ...filtersManager }
 
         delete updateFiltersPayload.allStops

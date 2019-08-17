@@ -1,7 +1,7 @@
-import React from 'react'
+import * as React from 'react'
 import { Ticket } from '../Ticket/Ticket'
 import { Ticket as TicketType } from '../../redux/store/tickets/reducer'
-import uuidv4 from 'uuid/v4'
+import * as uuidv4 from 'uuid/v4'
 
 export interface TicketsListMapProps {
     tickets: TicketType[]

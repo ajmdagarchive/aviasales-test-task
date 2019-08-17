@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { StopFiltersState } from '../StopsFilters/StopsFilters'
 
 import css from './Filter.module.styl'
@@ -82,7 +82,7 @@ export const Filter = (props: FilterProps) => {
                     <input
                         checked={checked}
                         className={css.Filter_Input}
-                        type="checkbox"
+                        type='checkbox'
                         id={checkboxId}
                         onChange={handleChange}
                     />

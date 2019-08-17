@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from 'react'
+import * as React from 'react'
 import {
     updateSortingAction,
     UpdateSortingActionPayload,
@@ -16,9 +16,9 @@ export const Sorting = (props: SortingDispatchProps) => {
         duration: false,
     }
 
-    const [sortingManager, setSortingState] = useState(initialState)
+    const [sortingManager, setSortingState] = React.useState(initialState)
 
-    const handleSortingClick = (event: MouseEvent<HTMLLIElement>) => {
+    const handleSortingClick = (event: React.MouseEvent<HTMLLIElement>) => {
         const target = event.target as HTMLLIElement
         const targetSortingType = target.getAttribute(
             'data-sorting',
@@ -44,7 +44,7 @@ export const Sorting = (props: SortingDispatchProps) => {
             <li
                 className={`${css.Sorting_Tab} ${
                     sortingManager.price ? css.Sorting_Tab__active : ''
-                }`}
+                    }`}
                 onClick={handleSortingClick}
                 data-sorting='price'
             >
@@ -53,7 +53,7 @@ export const Sorting = (props: SortingDispatchProps) => {
             <li
                 className={`${css.Sorting_Tab} ${
                     sortingManager.duration ? css.Sorting_Tab__active : ''
-                }`}
+                    }`}
                 onClick={handleSortingClick}
                 data-sorting='duration'
             >

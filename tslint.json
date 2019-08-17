@@ -39,6 +39,11 @@
         "interface-name": [
             false,
             "never-prefix"
+        ],
+        "variable-name": [
+            true,
+            "allow-leading-underscore",
+            "allow-pascal-case"
         ]
     }
 }

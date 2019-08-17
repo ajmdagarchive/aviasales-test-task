@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Ticket as TicketType } from '../../redux/store/tickets/reducer'
 
 import css from './Ticket.module.styl'
