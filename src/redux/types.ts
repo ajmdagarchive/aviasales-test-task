@@ -8,4 +8,5 @@ export interface RootStore {
     }
     sort: SortingStore
     tickets: Ticket[]
+    isTicketsLoaded: boolean
 }

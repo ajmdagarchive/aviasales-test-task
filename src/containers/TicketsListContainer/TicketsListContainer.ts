@@ -58,6 +58,8 @@ const sortingSelector = createSelector(
 const mapStateToProps = (state: RootStore): TicketsListMapProps => {
     return {
         tickets: sortingSelector(state),
+        allTickets: state.tickets,
+        isTicketsLoaded: state.isTicketsLoaded,
     }
 }
 

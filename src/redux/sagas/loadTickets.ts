@@ -1,5 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects'
 import { loadTicketsAction, loadTicketsAsync } from '../store/tickets/actions'
+import { isTicketsLoadedAction } from '../store/isTicketsLoaded/actions'
 import { apiClient } from '../../utils/httpClient'
 import { GetTicketsResponse } from '../../utils/types'
 
@@ -24,6 +25,8 @@ function* loadTicketsSaga() {
             result: ticketsResponse.tickets,
         }),
     )
+
+    yield put(isTicketsLoadedAction(true))
 }
 
 export function* watchLoadTickets() {

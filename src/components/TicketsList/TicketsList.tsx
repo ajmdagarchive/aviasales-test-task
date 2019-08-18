@@ -5,18 +5,24 @@ import * as uuidv4 from 'uuid/v4'
 
 export interface TicketsListMapProps {
     tickets: TicketType[]
+    allTickets: TicketType[]
+    isTicketsLoaded: boolean
 }
 
 export const TicketsList = (props: TicketsListMapProps) => {
+    const { isTicketsLoaded, tickets, allTickets } = props
+
+    if (!isTicketsLoaded) return <p>Загрузка...</p>
+
     return (
         <div>
-            {props.tickets.length
+            {tickets.length
                 ? (
-                    props.tickets.map((item: any) => {
+                    props.tickets.map((item: TicketType) => {
                         return <Ticket key={uuidv4()} data={item} />
                     }))
                 : (
-                    <p>Загрузка...</p>
+                    <p>Мы нашли {allTickets.length} рейсов, но ни один не соответствует заданным фильтрам.</p>
                 )}
         </div>
     )
