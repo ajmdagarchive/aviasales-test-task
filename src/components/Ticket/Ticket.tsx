@@ -39,7 +39,7 @@ export const Ticket = (props: TicketProps) => {
             </header>
 
             <div className={css.Ticket_Info}>
-                <div className={`${css.Ticket_Way} ${css.Ticket_InfoBlock}`}>
+                <div className={css.Ticket_InfoBlock}>
                     <div className={css.Ticket_InfoTitle}>
                         {`${segments[0].origin} - ${segments[0].destination}`}
                     </div>
@@ -47,7 +47,7 @@ export const Ticket = (props: TicketProps) => {
                         {`${formatToHHMM(new Date(segments[0].date))} - ${formatToHHMM(addMinutes(new Date(segments[0].date), segments[0].duration))}`}
                     </div>
                 </div>
-                <div className={`${css.Ticket_Time} ${css.Ticket_InfoBlock}`}>
+                <div className={css.Ticket_InfoBlock}>
                     <div className={css.Ticket_InfoTitle}>В пути</div>
                     <div className={css.Ticket_InfoValue}>
                         {formatToHHMM(new Date(0, 0, 0, 0, segments[0].duration))}
@@ -64,7 +64,7 @@ export const Ticket = (props: TicketProps) => {
             </div>
 
             <div className={css.Ticket_Info}>
-                <div className={`${css.Ticket_Way} ${css.Ticket_InfoBlock}`}>
+                <div className={css.Ticket_InfoBlock}>
                     <div
                         className={css.Ticket_InfoTitle}
                     >{`${segments[1].origin} - ${segments[1].destination}`}</div>
@@ -72,7 +72,7 @@ export const Ticket = (props: TicketProps) => {
                         {`${formatToHHMM(new Date(segments[1].date))} - ${formatToHHMM(addMinutes(new Date(segments[1].date), segments[1].duration))}`}
                     </div>
                 </div>
-                <div className={`${css.Ticket_Time} ${css.Ticket_InfoBlock}`}>
+                <div className={css.Ticket_InfoBlock}>
                     <div className={css.Ticket_InfoTitle}>В пути</div>
                     <div className={css.Ticket_InfoValue}>
                         {formatToHHMM(new Date(0, 0, 0, 0, segments[1].duration))}

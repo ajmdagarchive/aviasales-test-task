@@ -14,27 +14,6 @@
         align-items center
         margin-bottom 20px
 
-    &_Info
-        display flex
-        justify-content space-between
-        margin-bottom 10px
-        &:last-child
-            margin-bottom 0
-
-    &_InfoTitle
-        color #a0b0b9
-        font-weight: 600;
-        font-size: 12px;
-        line-height: 1.5;
-        letter-spacing: .5px;
-        text-transform: uppercase;
-
-    &_InfoValue
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 1.5;
-        color: var(--general-text-color);
-
     &_Price
         color var(--ticket-price-color)
         font-weight 600
@@ -43,7 +22,35 @@
         margin 0
 
     &_Carrier
-        display block
+
+    &_Info
+        display flex
+        margin-bottom 10px
+        &:last-child
+            margin-bottom 0
+
+    &_InfoBlock
+        width 140px
+        margin-right 20px
+        &:last-child
+            margin-right 0
+
+    &_InfoTitle
+        color #a0b0b9
+        font-weight 600
+        font-size 12px
+        line-height 1.5
+        letter-spacing .5px
+        text-transform uppercase
+
+    &_InfoValue
+        font-weight 600
+        font-size 14px
+        line-height 1.5
+        color var(--general-text-color)
+
+    &_Stops
+        min-width 90px
 
     &_ToInfo
         display flex
