@@ -31,11 +31,13 @@ export const Ticket = (props: TicketProps) => {
         <div className={css.Ticket}>
             <header className={css.Ticket_Header}>
                 <p className={css.Ticket_Price}>{`${Number(price).toLocaleString('ru-RU')} Р`}</p>
-                <img
-                    src={`//pics.avs.io/99/36/${carrier}.png`}
-                    className={css.Ticket_Carrier}
-                    alt='Логотип авиакомпании'
-                />
+                <div className={css.Ticket_Carrier}>
+                    <img
+                        className={css.Ticket_CarrierImage}
+                        src={`//pics.avs.io/99/36/${carrier}.png`}
+                        alt='Логотип авиакомпании'
+                    />
+                </div>
             </header>
 
             <div className={css.Ticket_Info}>
