@@ -1,6 +1,7 @@
 import { actionCreatorFactory } from 'typescript-fsa'
+import { SortingState } from '../../../components/Sorting/Sorting'
 
-export type UpdateSortingActionPayload = 'price' | 'duration'
+export type UpdateSortingActionPayload = keyof SortingState
 
 const ACF = actionCreatorFactory('sort')
 

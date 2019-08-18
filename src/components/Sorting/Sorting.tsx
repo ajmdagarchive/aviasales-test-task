@@ -1,8 +1,5 @@
 import * as React from 'react'
-import {
-    updateSortingAction,
-    UpdateSortingActionPayload,
-} from '../../redux/store/sort/actions'
+import { updateSortingAction } from '../../redux/store/sort/actions'
 
 import css from './Sorting.module.styl'
 
@@ -10,8 +7,13 @@ export interface SortingDispatchProps {
     updateSorting: typeof updateSortingAction
 }
 
+export interface SortingState {
+    price: boolean
+    duration: boolean
+}
+
 export const Sorting = (props: SortingDispatchProps) => {
-    const initialState = {
+    const initialState: SortingState = {
         price: true,
         duration: false,
     }
@@ -20,9 +22,7 @@ export const Sorting = (props: SortingDispatchProps) => {
 
     const handleSortingClick = (event: React.MouseEvent<HTMLLIElement>) => {
         const target = event.target as HTMLLIElement
-        const targetSortingType = target.getAttribute(
-            'data-sorting',
-        ) as UpdateSortingActionPayload
+        const targetSortingType = target.getAttribute('data-sorting') as keyof SortingState
 
         setSortingState((prevState) => {
             if (!sortingManager[targetSortingType]) {
@@ -42,18 +42,14 @@ export const Sorting = (props: SortingDispatchProps) => {
     return (
         <ul className={css.Sorting}>
             <li
-                className={`${css.Sorting_Tab} ${
-                    sortingManager.price ? css.Sorting_Tab__active : ''
-                    }`}
+                className={`${css.Sorting_Tab} ${sortingManager.price ? css.Sorting_Tab__active : ''}`}
                 onClick={handleSortingClick}
                 data-sorting='price'
             >
                 Самый дешевый
             </li>
             <li
-                className={`${css.Sorting_Tab} ${
-                    sortingManager.duration ? css.Sorting_Tab__active : ''
-                    }`}
+                className={`${css.Sorting_Tab} ${sortingManager.duration ? css.Sorting_Tab__active : ''}`}
                 onClick={handleSortingClick}
                 data-sorting='duration'
             >
