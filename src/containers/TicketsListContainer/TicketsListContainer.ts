@@ -27,7 +27,6 @@ const sortingSelector = createSelector(
     ticketSelector, sortSelector, stopFiltersSelector, (tickets, sort, stopFilters) => {
         let preparedTickets = [...tickets]
 
-        // если все чекбоксы отмечены - не фильтруем
         if (Object.entries(stopFilters).length !== 0 && stopFilters.constructor === Object) {
             preparedTickets = preparedTickets.filter((ticket) => {
                 for (const [j, segment] of ticket.segments.entries()) {
