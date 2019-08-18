@@ -34,7 +34,7 @@ export const Ticket = (props: TicketProps) => {
                 <div className={css.Ticket_Carrier}>
                     <img
                         className={css.Ticket_CarrierImage}
-                        src={`//pics.avs.io/99/36/${carrier}.png`}
+                        src={`https://pics.avs.io/99/36/${carrier}.png`}
                         alt='Логотип авиакомпании'
                     />
                 </div>
