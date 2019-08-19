@@ -28,21 +28,22 @@ const sortingSelector = createSelector(
         let preparedTickets = [...tickets]
 
         if (Object.entries(stopFilters).length !== 0 && stopFilters.constructor === Object) {
+            const stopFiltersKeys = Object.keys(stopFilters)
+
             preparedTickets = preparedTickets.filter((ticket) => {
-                for (const [j, segment] of ticket.segments.entries()) {
-                    const stopFiltersKeys = Object.keys(stopFilters)
-                    const stopsQuantity = segment.stops.length
+                const segmentStops1 = ticket.segments[0].stops.length
+                const segmentStops2 = ticket.segments[1].stops.length
+                const currentTicketStops = [segmentStops1, segmentStops2]
 
-                    for (const [i, stopFilter] of stopFiltersKeys.entries()) {
-                        const isLastSegment = j === ticket.segments.length - 1
-                        const isLastFilter = i === stopFiltersKeys.length - 1
+                if (currentTicketStops.every((ticketStops) => stopFiltersKeys.includes(String(ticketStops)))) return false
+                if (currentTicketStops.every((ticketStops) => !stopFiltersKeys.includes(String(ticketStops)))) return true
 
-                        if (Number(stopFilter) !== stopsQuantity && isLastSegment) return false
-                        if (Number(stopFilter) === stopsQuantity && isLastSegment && isLastFilter) return true
-
-                        if (Number(stopFilter) !== stopsQuantity && isLastFilter) return true
-                        if (Number(stopFilter) !== stopsQuantity) continue
-                        if (Number(stopFilter) === stopsQuantity) break
+                for (const stopFilterKey of stopFiltersKeys) {
+                    if (Number(stopFilterKey) === segmentStops1) {
+                        return segmentStops2 > segmentStops1 ? true : false
+                    }
+                    if (Number(stopFilterKey) === segmentStops2) {
+                        return segmentStops1 > segmentStops2 ? true : false
                     }
                 }
             })
