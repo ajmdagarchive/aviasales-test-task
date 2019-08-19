@@ -7,6 +7,7 @@ import { RootStore } from '../../redux/types'
 import { createSelector } from 'reselect'
 import { compare } from '../../utils/compare'
 import { Ticket } from '../../redux/store/tickets/reducer'
+import { ticketSelector, sortSelector, stopFiltersSelector } from '../../selectors'
 
 const compareTicketsByPrice = () => (a: Ticket, b: Ticket) => {
     return compare({ a: a.price, b: b.price })
@@ -18,10 +19,6 @@ const compareTicketsByDuration = () => (a: Ticket, b: Ticket) => {
 
     return compare({ a: aDuration, b: bDuration })
 }
-
-const ticketSelector = (state: RootStore) => state.tickets
-const sortSelector = (state: RootStore) => state.sort
-const stopFiltersSelector = (state: RootStore) => state.filters.stops
 
 const sortingSelector = createSelector(
     ticketSelector, sortSelector, stopFiltersSelector, (tickets, sort, stopFilters) => {
