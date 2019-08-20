@@ -20,13 +20,11 @@ export const Sorting = (props: SortingDispatchProps) => {
 
     const [sortingManager, setSortingState] = React.useState(initialState)
 
-    const handleSortingClick = (event: React.MouseEvent<HTMLLIElement>) => {
-        const target = event.target as HTMLLIElement
-        const targetSortingType = target.getAttribute('data-sorting') as keyof SortingState
+    const handleSortingClick = (sortingType: keyof SortingState) => {
 
         setSortingState((prevState) => {
-            if (!sortingManager[targetSortingType]) {
-                props.updateSorting(targetSortingType)
+            if (!sortingManager[sortingType]) {
+                props.updateSorting(sortingType)
 
                 return {
                     ...prevState,
@@ -43,15 +41,13 @@ export const Sorting = (props: SortingDispatchProps) => {
         <ul className={css.Sorting}>
             <li
                 className={`${css.Sorting_Tab} ${sortingManager.price ? css.Sorting_Tab__active : ''}`}
-                onClick={handleSortingClick}
-                data-sorting='price'
+                onClick={() => handleSortingClick('price')}
             >
                 Самый дешевый
             </li>
             <li
                 className={`${css.Sorting_Tab} ${sortingManager.duration ? css.Sorting_Tab__active : ''}`}
-                onClick={handleSortingClick}
-                data-sorting='duration'
+                onClick={() => handleSortingClick('duration')}
             >
                 Самый быстрый
             </li>
