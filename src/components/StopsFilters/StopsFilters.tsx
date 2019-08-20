@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Filter } from '../Filter/Filter'
+import { StopFilter } from '../StopFilter/StopFilter'
 import { updateFiltersAction, UpdateFiltersActionPayload } from '../../redux/store/filters/stops/actions'
 
 import css from './StopsFilters.module.styl'
@@ -27,30 +27,32 @@ export const stopsFilters = (props: StopFiltersDispatchProps) => {
         stops_3: true,
     }
 
-    const [filtersManager, setFiltersState] = React.useState(initialState)
+    const [stopFiltersState, setFiltersState] = React.useState(initialState)
 
     React.useEffect(() => {
         const updateFiltersPayload: UpdateFiltersActionPayload = {};
 
-        (Object.keys(filtersManager) as StopFiltersStateKeys).forEach((key) => {
-            if (filtersManager[key] === false && key !== 'allStops') {
+        (Object.keys(stopFiltersState) as StopFiltersStateKeys).forEach((key) => {
+            if (stopFiltersState[key] === false && key !== 'allStops') {
                 updateFiltersPayload[Number(key.slice(-1))] = true
             }
         })
 
         props.updateFilters(updateFiltersPayload)
-    }, [filtersManager])
+    }, [stopFiltersState])
 
     const changeStopFilterValues = (checkboxId: keyof StopFiltersState) => {
         setFiltersState((prevState) => {
             if (checkboxId === 'allStops') {
-                const result: Partial<StopFiltersState> = {};
+                const isChecked = !prevState[checkboxId]
 
-                (Object.keys(prevState) as StopFiltersStateKeys).forEach((key) => {
-                    result[key] = !prevState[checkboxId]
-                })
-
-                return { ...prevState, ...result }
+                return {
+                    allStops: isChecked,
+                    stops_0: isChecked,
+                    stops_1: isChecked,
+                    stops_2: isChecked,
+                    stops_3: isChecked,
+                }
             }
 
             if (!prevState[checkboxId] === false) {
@@ -93,34 +95,34 @@ export const stopsFilters = (props: StopFiltersDispatchProps) => {
     return (
         <div className={css.StopsFilters}>
             <p className={css.StopsFilters_Title}>Количество пересадок</p>
-            <Filter
+            <StopFilter
                 text='Все'
                 checkboxId='allStops'
-                checked={filtersManager.allStops}
+                checked={stopFiltersState.allStops}
                 changeHandler={() => changeStopFilterValues('allStops')}
             />
-            <Filter
+            <StopFilter
                 text='Без пересадок'
                 checkboxId='stops_0'
-                checked={filtersManager.stops_0}
+                checked={stopFiltersState.stops_0}
                 changeHandler={() => changeStopFilterValues('stops_0')}
             />
-            <Filter
+            <StopFilter
                 text='1 пересадка'
                 checkboxId='stops_1'
-                checked={filtersManager.stops_1}
+                checked={stopFiltersState.stops_1}
                 changeHandler={() => changeStopFilterValues('stops_1')}
             />
-            <Filter
+            <StopFilter
                 text='2 пересадки'
                 checkboxId='stops_2'
-                checked={filtersManager.stops_2}
+                checked={stopFiltersState.stops_2}
                 changeHandler={() => changeStopFilterValues('stops_2')}
             />
-            <Filter
+            <StopFilter
                 text='3 пересадки'
                 checkboxId='stops_3'
-                checked={filtersManager.stops_3}
+                checked={stopFiltersState.stops_3}
                 changeHandler={() => changeStopFilterValues('stops_3')}
             />
         </div>

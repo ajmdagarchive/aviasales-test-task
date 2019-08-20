@@ -1,4 +1,4 @@
-.Filter
+.StopFilter
     &_Label
         padding 0 20px
         height 40px
@@ -39,9 +39,9 @@
 
     &_Input
         display none
-        &:checked + .Filter_CustomCheckBox
+        &:checked + .StopFilter_CustomCheckBox
             border 1px solid var(--checked-checkbox-border-color)
             background-color var(--filter-hover-color)
-        &:checked + .Filter_CustomCheckBox:after
+        &:checked + .StopFilter_CustomCheckBox:after
             transform translateY(0)
             opacity 1
