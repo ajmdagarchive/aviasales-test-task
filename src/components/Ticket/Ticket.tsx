@@ -12,19 +12,14 @@ export const Ticket = (props: TicketProps) => {
 
     const formatToHHMM = (date: Date) => date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })
 
-    const addMinutes = (date: Date, diff: number) => {
-        return new Date(date.getTime() + diff * 60000)
+    const addMinutes = (date: Date, minutesDiff: number) => {
+        return new Date(date.getTime() + minutesDiff * 60000)
     }
 
-    const renderStopsQuantity = (stopsLength: number) => {
-        switch (true) {
-            case stopsLength > 1:
-                return `${stopsLength} пересадки`
-            case stopsLength === 1:
-                return '1 пересадка'
-            case stopsLength === 0:
-                return 'Прямой'
-        }
+    const renderStopsQuantity = (stopsLength: number) => ['Прямой', '1 пересадка'][stopsLength] || `${stopsLength} пересадки`
+
+    const displayTimeFromTo = (departureDate: string, minutesDuration: number) => {
+        return `${formatToHHMM(new Date(departureDate))} - ${formatToHHMM(addMinutes(new Date(departureDate), minutesDuration))}`
     }
 
     return (
@@ -46,7 +41,7 @@ export const Ticket = (props: TicketProps) => {
                         {`${segments[0].origin} - ${segments[0].destination}`}
                     </div>
                     <div className={css.Ticket_InfoValue}>
-                        {`${formatToHHMM(new Date(segments[0].date))} - ${formatToHHMM(addMinutes(new Date(segments[0].date), segments[0].duration))}`}
+                        {displayTimeFromTo(segments[0].date, segments[0].duration)}
                     </div>
                 </div>
                 <div className={css.Ticket_InfoBlock}>
@@ -71,7 +66,7 @@ export const Ticket = (props: TicketProps) => {
                         className={css.Ticket_InfoTitle}
                     >{`${segments[1].origin} - ${segments[1].destination}`}</div>
                     <div className={css.Ticket_InfoValue}>
-                        {`${formatToHHMM(new Date(segments[1].date))} - ${formatToHHMM(addMinutes(new Date(segments[1].date), segments[1].duration))}`}
+                        {displayTimeFromTo(segments[1].date, segments[1].duration)}
                     </div>
                 </div>
                 <div className={css.Ticket_InfoBlock}>
