@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Ticket } from '../Ticket/Ticket'
 import { Ticket as TicketType } from '../../redux/store/tickets/reducer'
-import * as uuidv4 from 'uuid/v4'
 
 export interface TicketsListMapProps {
     tickets: TicketType[]
@@ -18,8 +17,11 @@ export const TicketsList = (props: TicketsListMapProps) => {
         <div>
             {tickets.length
                 ? (
-                    props.tickets.map((item: TicketType) => {
-                        return <Ticket key={uuidv4()} data={item} />
+                    props.tickets.map((ticket: TicketType) => {
+                        return <Ticket
+                            key={`${ticket.price}-${ticket.carrier}-${ticket.segments[0].date}-${ticket.segments[1].date}-${ticket.segments[0].destination}-${ticket.segments[1].destination}`}
+                            data={ticket}
+                        />
                     }))
                 : (
                     <p>Мы нашли {allTickets.length} рейсов, но ни один не соответствует заданным фильтрам.</p>

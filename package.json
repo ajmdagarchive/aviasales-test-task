@@ -22,7 +22,6 @@
         "@types/react": "^16.9.1",
         "@types/react-dom": "^16.8.5",
         "@types/react-redux": "^7.1.1",
-        "@types/uuid": "^3.4.5",
         "@types/webpack-env": "^1.14.0",
         "css-loader": "^3.2.0",
         "file-loader": "^4.2.0",
@@ -49,7 +48,6 @@
         "redux-saga": "^1.0.5",
         "reselect": "^4.0.0",
         "typescript-fsa": "^3.0.0-beta-2",
-        "typescript-fsa-reducers": "^1.2.1",
-        "uuid": "^3.3.2"
+        "typescript-fsa-reducers": "^1.2.1"
     }
 }
